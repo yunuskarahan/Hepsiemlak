@@ -6,7 +6,6 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import Utilities.Driver;
 
 import java.time.Duration;
@@ -28,7 +27,7 @@ public class Hooks {
     }
 
 
-    @After
+    @After()
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);

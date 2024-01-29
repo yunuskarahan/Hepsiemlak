@@ -2,6 +2,7 @@ Feature: Hepsiemlak Case 1 Test
 
   Background:
     Given Navigate to Home Page
+    Then user should see hepsiemlak logo
 
   @webTest @case1
   Scenario: Case 1 web test
@@ -25,9 +26,10 @@ Feature: Hepsiemlak Case 1 Test
       | İşyeri                       |
 
 
-  @mobileTest2
+  @mobileTest @case1
   Scenario: Case 1 mobile test
-    When User can click Satılık
+    When User can click Satılık button
+    ##When User can click Satılık
     Then Verify the user "https://www.hepsiemlak.com/satilik"
     And user can click filtrele button
     When user can select il İzmir
@@ -54,3 +56,4 @@ Feature: Hepsiemlak Case 1 Test
       | Satılık       |
 
 
+   ## When User can click Satılık

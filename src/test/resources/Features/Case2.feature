@@ -2,6 +2,7 @@ Feature: Hepsiemlak task
 
   Background:
     Given Navigate to Home Page
+    Then user should see hepsiemlak logo
 
 
   @webTest @case2
@@ -22,7 +23,7 @@ Feature: Hepsiemlak task
     Then user should see phone number and verify validate phone number
 
 
-  @mobileTest2 @case2
+  @mobileTest @case2
   Scenario: Case 2 mobile Test
     When user can click kiralık button
     Then Verify the user "https://www.hepsiemlak.com/kiralik"

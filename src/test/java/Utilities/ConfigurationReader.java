@@ -16,7 +16,7 @@ public class ConfigurationReader {
 
             properties.load(file);
 
-            //close the file
+
             file.close();
 
 

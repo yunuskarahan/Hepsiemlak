@@ -9,17 +9,13 @@ import org.openqa.selenium.support.PageFactory;
 public abstract class BasePage {
 
 
-    @FindBy(xpath = "(//ul/li/a[@class='btn btn-search'])[1]")
-    public WebElement satılıkButton;
 
-    @FindBy(xpath = "//div[@class='link-sliding']/a/aside/*[contains(text(),'Satılık')]")
-    public WebElement mobileSatılıkbutton;
+    @FindBy(xpath = "//img[@class='he-logo' and @alt='hepsiemlak']")
+    public WebElement hepsiEmlakLogo;
 
-    @FindBy(xpath = "(//ul/li/a[@class='btn btn-search'])[2]")
-    public WebElement kiralıkButton;
 
-    @FindBy(xpath = "//div[@class='link-sliding']/a/aside/*[contains(text(),'Kiralık')]")
-    public WebElement mobileKiralıkbutton;
+
+
 
 
 
