@@ -10,14 +10,15 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import java.util.List;
 import static Utilities.ConfigurationReader.getProperty;
+import static config.ConfigFactory.getConfig;
 
 
-
-public class Case1_stepDef {
+public class Case1_WebTest_StepDef {
 
     WebHomePage webHomePage = new WebHomePage();
     WebForSalePage webForSalePage = new WebForSalePage();
     WebFilterPage webFilterPage = new WebFilterPage();
+    MobileForSalePage mobileForSalePage = new MobileForSalePage();
 
 
 
@@ -32,7 +33,14 @@ public class Case1_stepDef {
 
     @Then("user should see hepsiemlak logo")
     public void userShouldSeeHepsiemlakLogo() {
-        Assert.assertTrue(webHomePage.hepsiEmlakLogo.isDisplayed());
+
+        if (webHomePage.cookieCloseButton.isDisplayed()){
+            webHomePage.cookieCloseButton.click();
+            Assert.assertTrue(webHomePage.hepsiEmlakLogo.isDisplayed());
+        }else{
+            Assert.assertTrue(webHomePage.hepsiEmlakLogo.isDisplayed());
+        }
+
     }
 
     @When("User can click Satılık button")
@@ -45,8 +53,6 @@ public class Case1_stepDef {
 
     @Then("Verify the user {string}")
     public void verify_the_user(String expectedSatılıkUrl) {
-       /* String actualSatılıkUrl =Driver.getDriver().getCurrentUrl();
-        Assert.assertEquals(expectedSatılıkUrl,actualSatılıkUrl);*/
 
         BrowserUtils.verifyURLContains(expectedSatılıkUrl);
 
@@ -54,19 +60,34 @@ public class Case1_stepDef {
 
     @When("user can select il {string}")
     public void userCanSelectIl(String ilText) {
-        webFilterPage.selectİlSeçinizMenu.click();
-        webFilterPage.ilAraInput.sendKeys(ilText);
+
+        webFilterPage.getSelectCity(ilText);
+
+        if (ilText.equalsIgnoreCase("İzmir")){
         webFilterPage.izmirRadioButton.click();
-        BrowserUtils.waitFor(3);
+        } else if (ilText.equalsIgnoreCase("Ankara")) {
+            webFilterPage.cityAnkaraButton.click();
+        }else {
+            System.out.println("İl text Boş");
+        }
+        BrowserUtils.waitFor(2);
 
     }
 
     @And("user can select ilçe  {string}")
     public void userCanSelectIlçe(String ilçeText) {
         BrowserUtils.waitForClickability(webFilterPage.selectİlçeSeçinizMenu, 5);
-        webFilterPage.selectİlçeSeçinizMenu.click();
-        webFilterPage.ilçeAraInput.sendKeys(ilçeText);
-        webFilterPage.bornovaCheckbox.click();
+
+       webFilterPage.getSelectCount(ilçeText);
+       if (ilçeText.equalsIgnoreCase("Bornova")) {
+           webFilterPage.bornovaCheckbox.click();
+       } else if (ilçeText.equalsIgnoreCase("Çankaya")) {
+           webFilterPage.countyÇankayaButton.click();
+       }else {
+           System.out.println("ilçe text boş");
+       }
+
+
 
 
     }
@@ -99,17 +120,17 @@ public class Case1_stepDef {
 
         BrowserUtils.scrollToElement(webFilterPage.buildingAgeSecBox);
         webFilterPage.buildingAgeSecBox.click();
-        webFilterPage.sıfırBinaOptions.click();
+        webFilterPage.sıfırBinaCheckBox.click();
     }
 
     @When("user can select {string} and {string}")
     public void user_can_select_and(String string, String string2) {
 
-        BrowserUtils.scrollToElement(webFilterPage.katSeçinizMenu);
-        BrowserUtils.waitForClickability(webFilterPage.katSeçinizMenu, 5);
-        BrowserUtils.clickWithJS(webFilterPage.katSeçinizMenu);
-        webFilterPage.birBeşArasıOption.click();
-        webFilterPage.altıOnArası.click();
+        BrowserUtils.scrollToElement(webFilterPage.selectFloorCount);
+        BrowserUtils.waitForClickability(webFilterPage.selectFloorCount, 5);
+        BrowserUtils.clickWithJS(webFilterPage.selectFloorCount);
+        webFilterPage.birBeşArasıCheckBox.click();
+        webFilterPage.altıOnArasıCheckBox.click();
 
 
     }
@@ -124,17 +145,39 @@ public class Case1_stepDef {
     }
 
 
-    @Then("sonuçlar aynı olacak")
-    public void sonuçlarAynıOlacak(List<String> expectedResult) {
-        BrowserUtils.waitFor(2);
-        for (int i = 0; i < webForSalePage.resultFilter.size(); i++) {
-            String actualResult = webForSalePage.resultFilter.get(i).getText();
-            System.out.println("actualResult = " + actualResult);
-            Assert.assertEquals(expectedResult.get(i), actualResult);
+    @Then("the user should see that the search results are accurate")
+    public void theUserShouldSeeThatTheSearchResultsAreAccurate(List<String> expectedResult) {
 
+        BrowserUtils.waitFor(2);
+
+        String mobileAgent = getConfig().status();
+
+        if (mobileAgent != null && mobileAgent.equalsIgnoreCase("true")){
+            for (int i = 0; i < webForSalePage.resultFilter.size(); i++) {
+                String actualResult = webForSalePage.resultFilter.get(i).getText();
+                System.out.println("actualResult = " + actualResult);
+                Assert.assertEquals(expectedResult.get(i), actualResult);
+
+
+            }
+        } else {
+
+
+            for (int i = 0; i < mobileForSalePage.mobileResultFilter.size(); i++) {
+                String actualResult = mobileForSalePage.mobileResultFilter.get(i).getText();
+                System.out.println("actualResult = " + actualResult);
+                Assert.assertEquals(expectedResult.get(i), actualResult);
+
+
+            }
 
         }
+
+
     }
+
+
+
 
 
 }

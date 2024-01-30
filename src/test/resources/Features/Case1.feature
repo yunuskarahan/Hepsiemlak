@@ -4,7 +4,7 @@ Feature: Hepsiemlak Case 1 Test
     Given Navigate to Home Page
     Then user should see hepsiemlak logo
 
-  @webTest @case1
+  @webTest
   Scenario: Case 1 web test
     When User can click Satılık button
     Then Verify the user "https://www.hepsiemlak.com/satilik"
@@ -15,8 +15,8 @@ Feature: Hepsiemlak Case 1 Test
     And user can write high price "20000000"
     And user can select bina yaşı "sıfır bina"
     And user can select "1-5" and "6-10"
-    And user click search button
-    Then sonuçlar aynı olacak
+    And user can click search button
+    Then the user should see that the search results are accurate
       | Sıfır Bina                   |
       | 1-5                          |
       | 6-10                         |
@@ -26,10 +26,9 @@ Feature: Hepsiemlak Case 1 Test
       | İşyeri                       |
 
 
-  @mobileTest @case1
+  @mobileTest
   Scenario: Case 1 mobile test
-    When User can click Satılık button
-    ##When User can click Satılık
+    When User can click Satılık
     Then Verify the user "https://www.hepsiemlak.com/satilik"
     And user can click filtrele button
     When user can select il İzmir
@@ -44,10 +43,10 @@ Feature: Hepsiemlak Case 1 Test
     And user can click Tamam Button
     And user can select  kat sayısı
     And user can click Tamam Button
-    And user click search butto
+    And user can click search button
     Then user should see result "Bornova Satılık İşyeri"
     When user can click filtrele button
-    Then sonuçları doğrula
+    Then the user should see that the search results are accurate
       | 6-10          |
       | 1-5           |
       | Sıfır Bina    |
@@ -56,4 +55,4 @@ Feature: Hepsiemlak Case 1 Test
       | Satılık       |
 
 
-   ## When User can click Satılık
+

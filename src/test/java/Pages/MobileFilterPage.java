@@ -5,13 +5,15 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MobileFilterPage {
+public class MobileFilterPage extends BasePage{
 
 
     @FindBy(xpath = "//*[contains(text(),'İl Seçiniz')]")
-    public WebElement selectİlSeçinizMenu;
+    public WebElement mobileSelectCityMenu;
+
+
     @FindBy(xpath = "//button/span[contains(text(),'Filtrele')]")
-    public WebElement mobileFiltreleButton;
+    public WebElement mobileFilterButton;
 
 
     @FindBy(xpath = "//div[@class='action-btn action-btn__confirm']")
@@ -20,32 +22,40 @@ public class MobileFilterPage {
     @FindBy(xpath = "//li/div/label[contains(text(),'İşyeri')]")
     public WebElement mobileIşyeriRadioButton;
 
-    @FindBy(xpath = "//span[contains(text(), 'Bornova')]/ancestor::div[@class='he-checkbox']")
+    @FindBy(xpath = "(//span[contains(text(), 'Bornova')]/ancestor::div[@class='he-checkbox'])[2]")
     public WebElement mobileBornovaCheckbox;
 
+
     @FindBy(xpath = "//div/input[@placeholder='İl Ara']")
-    public WebElement mobileIlAraInput;
+    public WebElement mobileSearchCityInput;
+
+
+    @FindBy(xpath = "//div/input[@placeholder='İlçe Ara']")
+    public WebElement mobileSearchCountyInput;
 
     @FindBy(xpath = "(//div[@class='he-select__item']/div/div[contains(text(),'İzmir')])[2]")
-    public WebElement mobileİzmirCheckBox;
+    public WebElement mobileIzmirCheckBox;
+
 
     @FindBy(xpath = "//div[@class='he-select-base__control' and contains(text(),'İlçe Seçiniz')]")
-    public WebElement mobileİlçeSeçinizMenu;
+    public WebElement mobileSelectCountyMenu;
 
     @FindBy(xpath = "(//section[@class='price']/div/div/input)[1]")
-    public WebElement mobileLowPrice;
+    public WebElement mobileLowPriceInput;
 
     @FindBy(xpath = "(//section[@class='price']/div/div/input)[2]")
-    public WebElement mobileHighPrice;
+    public WebElement mobileHighPriceInput;
 
     @FindBy(xpath = "//section[@class='floor-count']//*[@class='he-select-base__control']")
     public WebElement mobilefloorCountMenu;
 
+
     @FindBy(xpath = "//span[contains(text(), '1-5 Arası')]/ancestor::div[@class='he-checkbox']/div")
-    public WebElement mobileBirBeşArasıOption;
+    public WebElement mobileBirBeşArasıCheckbox;
 
     @FindBy(xpath = "//span[contains(text(), '6-10 Arası')]/ancestor::div[@class='he-checkbox']/div")
-    public WebElement mobileAltıOnArasıOption;
+    public WebElement mobileAltıOnArasıCheckbox;
+
 
     @FindBy(xpath = "//button[@class='btn btn-red get-result']")
     public WebElement getResultButton;
@@ -56,11 +66,7 @@ public class MobileFilterPage {
     @FindBy(xpath = "//span[contains(text(), 'Sıfır Bina')]/ancestor::div[@class='he-checkbox']/div")
     public WebElement mobileSıfırBinaOption;
 
-    @FindBy(xpath = "//div[@class='val']/p")
-    public List<WebElement> mobileResultFilter;
 
-    @FindBy(xpath = "//div[@class='listing-title']/h1")
-    public WebElement mobileResultTitle;
 
 
 
@@ -68,10 +74,11 @@ public class MobileFilterPage {
 
 
     @FindBy(xpath = "(//div[@class='he-select__item']/div/div[contains(text(),'Ankara')])[2]")
-    public WebElement mobileIlAnkaraButton;
+    public WebElement mobileCityAnkaraButton;
+
 
     @FindBy(xpath = "//span[contains(text(), 'Çankaya')]/../..")
-    public WebElement mobileIlçeÇankayaButton;
+    public WebElement mobileCountyÇankayaButton;
 
     @FindBy(xpath = "//li/div/label[contains(text(),'Konut')]")
     public WebElement mobileKonutRadioButton;

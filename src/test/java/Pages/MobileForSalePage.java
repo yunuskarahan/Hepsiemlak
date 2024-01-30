@@ -13,7 +13,6 @@ public class MobileForSalePage extends BasePage{
     @FindBy(xpath = "//div[@class='listing-title']/h1")
     public WebElement mobileResultTitle;
 
-    @FindBy(xpath = "//button[@class='btn btn-red get-result']")
-    public WebElement getResultButton;
+
 
 }

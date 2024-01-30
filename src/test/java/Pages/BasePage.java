@@ -13,6 +13,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//img[@class='he-logo' and @alt='hepsiemlak']")
     public WebElement hepsiEmlakLogo;
 
+    @FindBy(xpath = "//span[contains(@class, 'cookie-policy__close')]")
+    public WebElement cookieCloseButton;
+
 
 
 

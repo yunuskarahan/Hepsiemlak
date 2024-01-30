@@ -17,13 +17,12 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/Features",
         glue = "Step_Definitions",
         dryRun = false,
-        tags = "@webTest and @case1"
+        tags = "@mobileTest and @case2"
+
+
 //mvn clean verify "-DargLine=-Denvironment=web -Dcucumber.filter.tags='@webTest'"
 //mvn clean verify "-DargLine=-Denvironment=mobile -Dcucumber.filter.tags='@mobileTest'"
 
-//mvn clean verify -Dtags="@mobilTest"
-
-//mvn clean verify "-DargLine=-Denvironment=web -Dcucumber.filter.tags='@webTest'"
 
 
 

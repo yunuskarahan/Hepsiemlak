@@ -8,11 +8,19 @@ import java.util.List;
 public class WebFilterPage extends BasePage{
 
 
+
+
     @FindBy(xpath = "//*[contains(text(),'İl Seçiniz')]")
-    public WebElement selectİlSeçinizMenu;
+    public WebElement selectCityMenu;
 
     @FindBy(xpath = "//div/input[@placeholder='İl ara']")
-    public WebElement ilAraInput;
+    public WebElement searchCityInput;
+
+
+
+
+
+
 
     @FindBy(xpath = "//li/a[@title='İzmir Satılık Ev İlanları']")
     public WebElement izmirRadioButton;
@@ -20,8 +28,13 @@ public class WebFilterPage extends BasePage{
     @FindBy(xpath = "//div[@class='he-select-base__container']/span[contains(text(),'İlçe Seçiniz')]")
     public WebElement selectİlçeSeçinizMenu;
 
+    @FindBy(xpath = "//div[@class='he-select-base__container']/span[contains(text(),'İlçe Seçiniz')]")
+    public WebElement selectCountyMenu;
+
     @FindBy(xpath = "//div/input[@placeholder='İlçe ara']")
-    public WebElement ilçeAraInput;
+    public WebElement searchCountyInput;
+
+
 
     @FindBy(xpath = "//li/a[contains(text(),'Bornova')]")
     public WebElement bornovaCheckbox;
@@ -40,42 +53,54 @@ public class WebFilterPage extends BasePage{
 
 
     @FindBy(xpath = "//section[@class='buildingAgeSec']/section/div/div/div/div/ul/li/label/span[text()='Sıfır Bina']")
-    public WebElement sıfırBinaOptions;
+    public WebElement sıfırBinaCheckBox;
+
 
     @FindBy(css = "section.floorCountSec div.custom-select")
-    public WebElement katSeçinizMenu;
+    public WebElement selectFloorCount;
 
     @FindBy(xpath = "(//section[@class='floorCountSec']/section/div/div/div/div/ul/li/label/span)[1]")
-    public WebElement birBeşArasıOption;
+    public WebElement birBeşArasıCheckBox;
 
     @FindBy(xpath = "(//section[@class='floorCountSec']/section/div/div/div/div/ul/li/label/span)[2]")
-    public WebElement altıOnArası;
+    public WebElement altıOnArasıCheckBox;
 
     @FindBy(css = "a.btn.btn-red.btn-large")
     public WebElement searchButton;
 
-
     @FindBy(xpath = "//li/a[@title='Ankara Kiralık Ev İlanları']")
-    public WebElement ankaraButton;
+    public WebElement cityAnkaraButton;
 
     @FindBy(xpath = "//li/a[contains(text(),'Çankaya')]")
-    public WebElement çankayaButton;
+    public WebElement countyÇankayaButton;
 
     @FindBy(xpath = "//ul[@class='filter-list']/li/div[@class='md-radio']/a/label[contains(text(),'Konut')]")
     public  WebElement konutRadioButton;
 
-    //*[contains(text(),'Oda Seçiniz')]
     @FindBy(xpath = "//*[contains(text(),'Oda Seçiniz')]")
-    public WebElement odaSayısıSeçiniz;
+    public WebElement roomTypeMenu;
 
     @FindBy(xpath = "//ul[@class='dropdown-list']/li/label/span[contains(text(),'2+1')]")
-    public WebElement ikiArtıBir;
+    public WebElement ikiArtıBirCheckBox;
+
 
     @FindBy(xpath = "//div[@class='js-within-site-filter']/div//div/div[@class='he-select-base']")
-    public WebElement siteİçerisindeMenu;
+    public WebElement withinSiteMenu;
 
     @FindBy(xpath = "//ul[@class='he-select__list']/li/span[contains(text(),'Evet')]")
     public WebElement evetRadioButton;
+
+
+    public void getSelectCity(String cityName){
+        selectCityMenu.click();
+        searchCityInput.sendKeys(cityName);
+    }
+
+    public void getSelectCount(String countyName){
+
+        selectCountyMenu.click();
+        searchCountyInput.sendKeys(countyName);
+    }
 
 
 

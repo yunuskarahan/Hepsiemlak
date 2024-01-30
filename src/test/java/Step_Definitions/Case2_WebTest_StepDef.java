@@ -13,12 +13,16 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Case2_stepDef {
+import static config.ConfigFactory.getConfig;
+
+public class Case2_WebTest_StepDef {
 
     WebHomePage webHomePage = new WebHomePage();
     WebFilterPage webFilterPage = new WebFilterPage();
 
     WebForRentPage webForRentPage = new WebForRentPage();
+
+    MobileFilterPage mobileFilterPage = new MobileFilterPage();
 
 
 
@@ -33,26 +37,8 @@ public class Case2_stepDef {
 
     }
 
-    @When("user can select il Ankara")
-    public void user_can_select_il_ankara() {
-        webFilterPage.selectİlSeçinizMenu.click();
-        webFilterPage.ilAraInput.sendKeys("Ankara");
-        webFilterPage.ankaraButton.click();
 
 
-
-
-    }
-
-    @When("user can select ilçe Çankaya")
-    public void user_can_select_ilçe_çankaya() {
-     BrowserUtils.clickWithJS(webFilterPage.selectİlçeSeçinizMenu);
-       webFilterPage.ilçeAraInput.sendKeys("Çankaya");
-       webFilterPage.çankayaButton.click();
-       BrowserUtils.waitFor(2);
-
-
-    }
 
     @When("user can select Konut")
     public void user_can_select_konut() {
@@ -70,22 +56,33 @@ public class Case2_stepDef {
 
     @And("user can select iki artı bir")
     public void userCanSelectIkiArtıBir() {
-        BrowserUtils.scrollToElement(webFilterPage.odaSayısıSeçiniz);
-        webFilterPage.odaSayısıSeçiniz.click();
-        webFilterPage.ikiArtıBir.click();
+        BrowserUtils.scrollToElement(webFilterPage.roomTypeMenu);
+        BrowserUtils.waitForClickability(webFilterPage.roomTypeMenu,5);
+        webFilterPage.roomTypeMenu.click();
+        webFilterPage.ikiArtıBirCheckBox.click();
     }
 
     @When("user can select evet in site içerisinde")
     public void user_can_select_evet_in_site_içerisinde() {
-        BrowserUtils.scrollToElement(webFilterPage.siteİçerisindeMenu);
-        webFilterPage.siteİçerisindeMenu.click();
+        BrowserUtils.scrollToElement(webFilterPage.withinSiteMenu);
+        webFilterPage.withinSiteMenu.click();
         webFilterPage.evetRadioButton.click();
 
     }
 
     @When("user can click search button")
     public void user_can_click_search_button() {
-        webFilterPage.searchButton.click();
+
+
+        String mobileAgent = getConfig().status();
+
+        if (mobileAgent != null && mobileAgent.equalsIgnoreCase("true")){
+            mobileFilterPage.getResultButton.click();
+        } else {
+            webFilterPage.searchButton.click();
+
+        }
+
 
 
     }

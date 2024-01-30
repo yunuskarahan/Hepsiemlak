@@ -1,7 +1,6 @@
 package Step_Definitions;
 
 
-
 import Pages.*;
 import Utilities.BrowserUtils;
 import io.cucumber.java.en.And;
@@ -15,13 +14,11 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Case2mobileWeb_stepDef {
-
-
+public class Case2_MobileTest_StepDef {
 
 
     MobileForRentPage mobileForRentPage = new MobileForRentPage();
-    
+
     MobileHomePage mobileHomePage = new MobileHomePage();
     MobileFilterPage mobileFilterPage = new MobileFilterPage();
 
@@ -36,19 +33,18 @@ public class Case2mobileWeb_stepDef {
 
     @And("user can select mobile il  Ankara")
     public void userCanSelectMobileIlAnkara() {
-        mobileFilterPage.selectİlSeçinizMenu.click();
-        mobileFilterPage.mobileIlAraInput.sendKeys("Ankara");
-        mobileFilterPage.mobileIlAnkaraButton.click();
+        mobileFilterPage.mobileSelectCityMenu.click();
+        mobileFilterPage.mobileSearchCityInput.sendKeys("Ankara");
+        mobileFilterPage.mobileCityAnkaraButton.click();
         BrowserUtils.waitFor(2);
     }
 
     @And("user can click ilçe Çankaya")
     public void userCanClickIlçeÇankaya() {
-        mobileFilterPage.mobileİlçeSeçinizMenu.click();
-       // salesPage.mobileIlçeAraInput.sendKeys("Çankaya");
-        BrowserUtils.waitForClickability(mobileFilterPage.mobileIlçeÇankayaButton,15);
 
-      mobileFilterPage.mobileIlçeÇankayaButton.click();
+        mobileFilterPage.mobileSelectCountyMenu.click();
+        BrowserUtils.waitForClickability(mobileFilterPage.mobileCountyÇankayaButton, 15);
+        mobileFilterPage.mobileCountyÇankayaButton.click();
 
     }
 
@@ -56,9 +52,9 @@ public class Case2mobileWeb_stepDef {
     public void userCanClickKonut() {
         BrowserUtils.scrollToElement(mobileFilterPage.mobileKonutRadioButton);
 
-        if (mobileFilterPage.mobileKonutRadioButton.isSelected()){
+        if (mobileFilterPage.mobileKonutRadioButton.isSelected()) {
             System.out.println("Konut seçili");
-        }else {
+        } else {
             mobileFilterPage.mobileKonutRadioButton.click();
         }
 
@@ -71,7 +67,7 @@ public class Case2mobileWeb_stepDef {
 
         mobileFilterPage.mobileRoomTypeMenu.click();
         BrowserUtils.clickWithJS(mobileFilterPage.mobileIkıArtıBirCheckbox);
-        //BrowserUtils.waitFor(2);
+
 
     }
 
@@ -80,14 +76,14 @@ public class Case2mobileWeb_stepDef {
         BrowserUtils.scrollToElement(mobileFilterPage.mobileWithinSiteMenu);
         mobileFilterPage.mobileWithinSiteMenu.click();
         BrowserUtils.clickWithJS(mobileFilterPage.mobileEvetRadioButton);
-       // BrowserUtils.waitFor(2);
+        // BrowserUtils.waitFor(2);
     }
 
 
     @Then("user should see {string} in the mobile")
     public void userShouldSeeInTheMobile(String expectedResultTitle) {
 
-        Assert.assertEquals(expectedResultTitle,mobileForRentPage.mobileResultSearchText.getText());
+        Assert.assertEquals(expectedResultTitle, mobileForRentPage.mobileResultSearchText.getText());
 
 
     }
@@ -98,17 +94,16 @@ public class Case2mobileWeb_stepDef {
 
     }
 
-    @And("user can clik show phone number in the mobile")
-    public void userCanClikShowPhoneNumberInTheMobile() {
+    @And("user can click show phone number in the mobile")
+    public void userCanClickShowPhoneNumberInTheMobile() {
         Random rand = new Random();
         int randomIndex = rand.nextInt(mobileForRentPage.mobileCallButton.size());
         mobileForRentPage.mobileCallButton.get(randomIndex).click();
-       // BrowserUtils.waitFor(5);
     }
 
     @Then("user should see phone number and verify validate phone number in the mobile")
     public void userShouldSeePhoneNumberAndVerifyValidatePhoneNumberInTheMobile() {
-        for (WebElement element : mobileForRentPage.mobileListPhoneNumber){
+        for (WebElement element : mobileForRentPage.mobileListPhoneNumber) {
             String actualListPhoneNumber = element.getAttribute("href");
             System.out.println("actualListPhoneNumber = " + actualListPhoneNumber);
 
@@ -117,10 +112,10 @@ public class Case2mobileWeb_stepDef {
             Pattern pattern = Pattern.compile(phoneRegex);
             Matcher matcher = pattern.matcher(actualListPhoneNumber);
 
-            if (!matcher.find()){
+            if (!matcher.find()) {
                 Assert.assertFalse(matcher.matches());
                 System.out.println("telefon numarası doğru formatta " + actualListPhoneNumber);
-            }else {
+            } else {
                 System.out.println("telefon numarası yanlış formatta :" + actualListPhoneNumber);
             }
         }
