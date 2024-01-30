@@ -5,7 +5,7 @@ Feature: Hepsiemlak task
     Then user should see hepsiemlak logo
 
 
-  @webTest @case2
+  @webTest
   Scenario: Case 2 test
     When User can click Kiralık button
     Then Verify the user "https://www.hepsiemlak.com/kiralik"
@@ -23,7 +23,7 @@ Feature: Hepsiemlak task
     Then user should see phone number and verify validate phone number
 
 
-  @mobileTest @case2
+  @mobileTest
   Scenario: Case 2 mobile Test
     When user can click kiralık button
     Then Verify the user "https://www.hepsiemlak.com/kiralik"
@@ -38,7 +38,7 @@ Feature: Hepsiemlak task
     And user can click site içerisinde yes
     And user can click Tamam Button
     And user can click search button
-    Then user should see "Çankaya Site İçerisinde 2+1 Kiralık E" in the mobile
+    Then user should see "Çankaya Site İçerisinde 2+1 Kiralık Ev" in the mobile
     And user can click page 3
     Then user should see page "page=3"
     Then user should see show phone number in the mobile

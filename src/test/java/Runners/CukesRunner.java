@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/Features",
         glue = "Step_Definitions",
         dryRun = false,
-        tags = "@mobileTest and @case2"
+        tags = "@mobileTest"
 
 
 //mvn clean verify "-DargLine=-Denvironment=web -Dcucumber.filter.tags='@webTest'"
