@@ -15,7 +15,7 @@ package'ları içerisinde oluşturulmuştur.
 
 ---
 #### Test koşturma yolları
-- Testleri manuel IDE ile koşturmak isterseniz;
+- Testleri IDE ile manuel koşturmak isterseniz;
   - Cukes Runner classı içerisinden;
     - Web testi için
       - 1- configuration.properties dosyası içerisinde  mobile.status'üne false olması gerekli ==> "mobile.status=false"
